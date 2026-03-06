@@ -12,7 +12,7 @@ public class serial : MonoBehaviour
     [Header("Player object")]
     public Transform targetObject;
 
-    public float rotationLerpSpeed = 10f;
+    public float rotationLerpSpeed = 2f;
 
     private int faceState = 0;
 
@@ -117,6 +117,7 @@ public class serial : MonoBehaviour
             
             return;
         }
+        
 
         targetObject.rotation = Quaternion.Lerp(
             targetObject.rotation,

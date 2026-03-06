@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [Range(0, 5)]
+    [Range(0, 3)]
     public int type = 0;
     private Color[] typeColors = new Color[] { Color.blue, Color.green, Color.red, Color.brown, Color.softYellow };
 
