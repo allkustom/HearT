@@ -115,7 +115,9 @@ public class TDUdpManager : MonoBehaviour
                 string msg = Encoding.UTF8.GetString(data).Trim();
 
                 if (printReceivedMessage)
-                    Debug.Log("UDP TD -> Unity: " + msg);
+                {
+                    // Debug.Log("UDP TD -> Unity: " + msg);
+                }
 
                 string[] parts = msg.Split(',');
                 if (parts.Length < 4)

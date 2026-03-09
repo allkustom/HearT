@@ -4,7 +4,7 @@ public class EnemyManager : MonoBehaviour
 {
     [Range(0, 3)]
     public int type = 0;
-    private Color[] typeColors = new Color[] { Color.blue, Color.green, Color.red, Color.brown, Color.softYellow };
+    private Color[] typeColors = new Color[] { Color.blue, Color.green, Color.red, Color.gray, Color.magenta };
 
     [Range(0.0f, 5.0f)]
     public float range = 2f;

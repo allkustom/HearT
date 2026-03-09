@@ -45,7 +45,7 @@ static const char useAxis = 'Z';
 static const float facingThreshold = 7.0f;
 
 static uint32_t lastFaceChangeMs = 0;
-static const uint32_t faceSampleTime = 200;
+static const uint32_t faceSampleTime = 50;
 
 
 // Joystick pin
@@ -167,12 +167,16 @@ FaceState detectFace(float ax, float ay, float az) {
   return face_side;
 }
 
-JoyDir detectJoyDir(int x, int y) {
+JoyDir detectJoyDir(int x, int y, FaceState face) {
   int dx = x - joyCx;
   int dy = y - joyCy;
 
   if (invertX) dx = -dx;
   if (invertY) dy = -dy;
+  if (face == face_down) {
+    dx = -dx;
+    dy = -dy;
+  }
 
   if (abs(dx) < joystickRelease && abs(dy) < joystickRelease) return dir_none;
 
@@ -267,12 +271,12 @@ void loop() {
 
 
 
-  if (now - lastJoyMs >= 50) {
+  if (now - lastJoyMs >= 10) {
     lastJoyMs = now;
 
     int x = analogRead(joystickPin_X);
     int y = analogRead(joystickPin_Y);
-    JoyDir dir = detectJoyDir(x, y);
+    JoyDir dir = detectJoyDir(x, y, currentFace);
 
     if (dir == dir_none) {
       joyLatchedDir = dir_none;

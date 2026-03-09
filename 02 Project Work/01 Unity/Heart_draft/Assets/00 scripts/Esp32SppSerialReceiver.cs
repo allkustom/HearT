@@ -35,7 +35,6 @@ public class Esp32SppSerialReceiver : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of Esp32SppSerialReceiver detected. Destroying the new one.");
             Destroy(this.gameObject);
             return;
         }
