@@ -155,8 +155,13 @@ public class Esp32SppSerialReceiver : MonoBehaviour
             }
             else if (key == "BUTTON")
             {
-                PlayerStateManager.Instance.ButtonPressed();
-                Debug.Log("Button pressed");
+                if(PlayerDataManager.Instance.diagnosisCount < PlayerDataManager.Instance.dignosisPoints.Length)
+                {
+                    Debug.Log("Button pressed");
+                    PlayerDataManager.Instance.addDiagnosisPoint();
+                }
+
+                
                 // OnButton?.Invoke();
             }
         }

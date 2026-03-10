@@ -18,11 +18,14 @@ public class PlayerStateManager : MonoBehaviour
     public RawImage[] typeUI = new RawImage[4];
 
     public TextMeshProUGUI faceOrientText;
+    private int prevFace = 999;
+    private bool faceInitialized = false;
 
     public TextMeshProUGUI buttonCounterText;
-    private int buttonCounter = 0;
 
     public bool isInIntro = true;
+    private bool prevIsInIntro;
+    private bool introInitialized = false;
     public AudioListener audioListener;
 
 
@@ -33,13 +36,18 @@ public class PlayerStateManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-         Instance = this;
+        Instance = this;
 
-
+        prevIsInIntro = isInIntro;
+        introInitialized = true;
 
         isPlayerOnPlane = (this.transform.position.y < playerHeightTrigger);
         isPlayerOnPlane_saved = isPlayerOnPlane;
         activate = true;
+        if (TDUdpManager.Instance != null)
+        {
+            TDUdpManager.Instance.SendIntroState(isInIntro);
+        }
     }
 
     void Update()
@@ -64,6 +72,16 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         setTypeUI();
+        if (introInitialized && isInIntro != prevIsInIntro)
+        {
+            if (TDUdpManager.Instance != null)
+            {
+                TDUdpManager.Instance.SendIntroState(isInIntro);
+
+            }
+
+            prevIsInIntro = isInIntro;
+        }
 
     }
 
@@ -87,17 +105,23 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
-    public void ButtonPressed()
+
+    public void UpdateFaceOrientation(int newFace)
     {
-        // Debug.Log("Button Pressed");
-        buttonCounter++;
-        buttonCounterText.text = buttonCounter.ToString();
 
+        if (!faceInitialized)
+        {
+            prevFace = newFace;
+            faceInitialized = true;
+            return;
+        }
 
+        if (newFace != prevFace)
+        {
+            if (TDUdpManager.Instance != null)
+                TDUdpManager.Instance.SendFaceState(newFace);
+
+            prevFace = newFace;
+        }
     }
-    public void UpdateFaceOrientation(int faceState)
-    {
-        faceOrientText.text = faceState.ToString();
-    }
-
 }

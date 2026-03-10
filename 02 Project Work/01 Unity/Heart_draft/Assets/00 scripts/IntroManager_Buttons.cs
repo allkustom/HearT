@@ -54,11 +54,11 @@ public class IntroManager_Buttons : MonoBehaviour
         dashboardPanelBlock.SetActive(true);
 
 
-        for(int i = 0; i < dashBoardRawSounds.Length; i++)
+        for (int i = 0; i < dashBoardRawSounds.Length; i++)
         {
             dashBoardRawSounds[i].SetActive(false);
         }
-        for(int i = 0; i < dashBoardConvertedSounds.Length; i++)
+        for (int i = 0; i < dashBoardConvertedSounds.Length; i++)
         {
             dashBoardConvertedSounds[i].SetActive(false);
         }
@@ -315,6 +315,7 @@ public class IntroManager_Buttons : MonoBehaviour
             // Add Dashboard enable
             playerStateManager.isInIntro = false;
             playerStateManager.audioListener.enabled = true;
+            playerStateManager.isInIntro = false;
             DisableButton();
         }
 
@@ -361,37 +362,52 @@ public class IntroManager_Buttons : MonoBehaviour
     // Add TDUDP sending function below clip setting
     public void sound1Select_1_Apply()
     {
-        dashBoardConvertedSounds[0].GetComponent<AudioSource>().clip =soundSamples_1[PlayerDataManager.Instance.soundSelect_1 - 1].GetComponent<AudioSource>().clip;
+        dashBoardConvertedSounds[0].GetComponent<AudioSource>().clip = soundSamples_1[PlayerDataManager.Instance.soundSelect_1].GetComponent<AudioSource>().clip;
+        SendSoundSelectsToTD();
     }
     public void sound1Select_2_Apply()
     {
-        dashBoardConvertedSounds[1].GetComponent<AudioSource>().clip =soundSamples_2[PlayerDataManager.Instance.soundSelect_2 - 1].GetComponent<AudioSource>().clip;
+        dashBoardConvertedSounds[1].GetComponent<AudioSource>().clip = soundSamples_2[PlayerDataManager.Instance.soundSelect_2].GetComponent<AudioSource>().clip;
+        SendSoundSelectsToTD();
     }
     public void sound1Select_3_Apply()
     {
-        dashBoardConvertedSounds[2].GetComponent<AudioSource>().clip =soundSamples_3[PlayerDataManager.Instance.soundSelect_3 - 1].GetComponent<AudioSource>().clip;
+        dashBoardConvertedSounds[2].GetComponent<AudioSource>().clip = soundSamples_3[PlayerDataManager.Instance.soundSelect_3].GetComponent<AudioSource>().clip;
+        SendSoundSelectsToTD();
     }
     public void sound1Select_4_Apply()
     {
-        dashBoardConvertedSounds[3].GetComponent<AudioSource>().clip =soundSamples_4[PlayerDataManager.Instance.soundSelect_4 - 1].GetComponent<AudioSource>().clip;
+        dashBoardConvertedSounds[3].GetComponent<AudioSource>().clip = soundSamples_4[PlayerDataManager.Instance.soundSelect_4].GetComponent<AudioSource>().clip;
+        SendSoundSelectsToTD();
+    }
+    public void SendSoundSelectsToTD()
+    {
+        if (TDUdpManager.Instance == null) return;
+
+        TDUdpManager.Instance.SendSoundSelects(
+            PlayerDataManager.Instance.soundSelect_1,
+            PlayerDataManager.Instance.soundSelect_2,
+            PlayerDataManager.Instance.soundSelect_3,
+            PlayerDataManager.Instance.soundSelect_4
+        );
     }
 
 
     public void sound1Select_1_1()
     {
-        PlayerDataManager.Instance.soundSelect_1 = 1;
+        PlayerDataManager.Instance.soundSelect_1 = 0;
     }
     public void sound1Select_1_2()
     {
-        PlayerDataManager.Instance.soundSelect_1 = 2;
+        PlayerDataManager.Instance.soundSelect_1 = 1;
     }
     public void sound1Select_1_3()
     {
-        PlayerDataManager.Instance.soundSelect_1 = 3;
+        PlayerDataManager.Instance.soundSelect_1 = 2;
     }
     public void sound1Select_1_4()
     {
-        PlayerDataManager.Instance.soundSelect_1 = 4;
+        PlayerDataManager.Instance.soundSelect_1 = 3;
     }
 
 
@@ -400,56 +416,56 @@ public class IntroManager_Buttons : MonoBehaviour
 
     public void sound1Select_2_1()
     {
-        PlayerDataManager.Instance.soundSelect_2 = 1;
+        PlayerDataManager.Instance.soundSelect_2 = 0;
     }
     public void sound1Select_2_2()
     {
-        PlayerDataManager.Instance.soundSelect_2 = 2;
+        PlayerDataManager.Instance.soundSelect_2 = 1;
     }
     public void sound1Select_2_3()
     {
-        PlayerDataManager.Instance.soundSelect_2 = 3;
+        PlayerDataManager.Instance.soundSelect_2 = 2;
     }
     public void sound1Select_2_4()
     {
-        PlayerDataManager.Instance.soundSelect_2 = 4;
+        PlayerDataManager.Instance.soundSelect_2 = 3;
     }
 
 
 
     public void sound1Select_3_1()
     {
-        PlayerDataManager.Instance.soundSelect_3 = 1;
+        PlayerDataManager.Instance.soundSelect_3 = 0;
     }
     public void sound1Select_3_2()
     {
-        PlayerDataManager.Instance.soundSelect_3 = 2;
+        PlayerDataManager.Instance.soundSelect_3 = 1;
     }
     public void sound1Select_3_3()
     {
-        PlayerDataManager.Instance.soundSelect_3 = 3;
+        PlayerDataManager.Instance.soundSelect_3 = 2;
     }
     public void sound1Select_3_4()
     {
-        PlayerDataManager.Instance.soundSelect_3 = 4;
+        PlayerDataManager.Instance.soundSelect_3 = 3;
     }
 
 
     public void sound1Select_4_1()
     {
-        PlayerDataManager.Instance.soundSelect_4 = 1;
+        PlayerDataManager.Instance.soundSelect_4 = 0;
     }
     public void sound1Select_4_2()
     {
-        PlayerDataManager.Instance.soundSelect_4 = 2;
+        PlayerDataManager.Instance.soundSelect_4 = 1;
     }
     public void sound1Select_4_3()
     {
-        PlayerDataManager.Instance.soundSelect_4 = 3;
+        PlayerDataManager.Instance.soundSelect_4 = 2;
     }
     public void sound1Select_4_4()
     {
-        PlayerDataManager.Instance.soundSelect_4 = 4;
+        PlayerDataManager.Instance.soundSelect_4 = 3;
     }
 
     public void playRaw_1()
@@ -494,6 +510,8 @@ public class IntroManager_Buttons : MonoBehaviour
         dashBoardConvertedSounds[3].SetActive(false);
         dashBoardConvertedSounds[3].SetActive(true);
     }
+
+
 
 
 }

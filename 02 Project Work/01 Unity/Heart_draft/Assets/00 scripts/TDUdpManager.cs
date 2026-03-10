@@ -20,7 +20,7 @@ public class TDUdpManager : MonoBehaviour
     public Transform targetObject;
     // public float planeWidth = 11.0f;
     // public float planeHeight = 17.0f;
-    
+
 
     public Vector2 worldXRange = new Vector2(-5.5f, 5.5f);
     public Vector2 worldZRange = new Vector2(-8.5f, 8.5f);
@@ -50,6 +50,9 @@ public class TDUdpManager : MonoBehaviour
     private IPEndPoint sendEndPoint;
 
     public Transform PlayerTransform => targetObject;
+
+    private bool hadEncounterLastSend = false;
+    public string noEncounterMessage = "none";
 
     private struct InteractionData
     {
@@ -141,7 +144,7 @@ public class TDUdpManager : MonoBehaviour
             }
             catch (SocketException)
             {
-                
+
             }
             catch (Exception e)
             {
@@ -212,6 +215,16 @@ public class TDUdpManager : MonoBehaviour
             Debug.LogWarning("UDP send error: " + e.Message);
         }
     }
+    public void SendIntroState(bool isInIntro)
+    {
+        SendRawMessage(isInIntro ? "intro,1" : "intro,0");
+    }
+
+    public void SendFaceState(int face)
+    {
+        string msg = string.Format(CultureInfo.InvariantCulture, "face,{0}", face);
+        SendRawMessage(msg);
+    }
 
     public void SendPlayerPlaneState(bool isOnPlane)
     {
@@ -219,9 +232,22 @@ public class TDUdpManager : MonoBehaviour
         SendRawMessage(msg);
     }
 
+
+    public void SendSoundSelects(int s1, int s2, int s3, int s4)
+    {
+        string msg = string.Format(
+            CultureInfo.InvariantCulture,
+            "sound,{0},{1},{2},{3}",
+            s1, s2, s3, s4
+        );
+
+        SendRawMessage(msg);
+    }
+
     private void SendAllInteractions()
     {
         StringBuilder sb = new StringBuilder();
+        int count = 0;
 
         lock (interactionLock)
         {
@@ -242,16 +268,22 @@ public class TDUdpManager : MonoBehaviour
                 );
 
                 first = false;
+                count++;
             }
         }
 
-        if (sb.Length > 0)
+        if (count > 0)
         {
             SendRawMessage(sb.ToString());
+            hadEncounterLastSend = true;
         }
-        else if (sendEmptyFrameMessage)
+        else
         {
-            SendRawMessage(emptyFrameMessage);
+            if (hadEncounterLastSend)
+            {
+                SendRawMessage(noEncounterMessage);  // "none"
+                hadEncounterLastSend = false;
+            }
         }
     }
 
