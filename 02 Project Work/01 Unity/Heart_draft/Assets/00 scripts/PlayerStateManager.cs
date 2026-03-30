@@ -44,10 +44,10 @@ public class PlayerStateManager : MonoBehaviour
         isPlayerOnPlane = (this.transform.position.y < playerHeightTrigger);
         isPlayerOnPlane_saved = isPlayerOnPlane;
         activate = true;
-        if (TDUdpManager.Instance != null)
-        {
-            TDUdpManager.Instance.SendIntroState(isInIntro);
-        }
+        // if (TDUdpManager.Instance != null)
+        // {
+        //     TDUdpManager.Instance.SendIntroState(isInIntro);
+        // }
     }
 
     void Update()
@@ -56,32 +56,37 @@ public class PlayerStateManager : MonoBehaviour
 
         if (activate && isPlayerOnPlane != isPlayerOnPlane_saved)
         {
-            if (isInIntro)
-            {
-                audioListener.enabled = isPlayerOnPlane;
-                isPlayerOnPlane_saved = isPlayerOnPlane;
-            }
-            else
-            {
+            // if (isInIntro)
+            // {
+            //     audioListener.enabled = isPlayerOnPlane;
+            //     isPlayerOnPlane_saved = isPlayerOnPlane;
+            // }
+            // else
+            // {
+            //     TDUdpManager.Instance.SendPlayerPlaneState(isPlayerOnPlane);
+
+            //     Debug.Log("isPlayerOnPlane changed: " + isPlayerOnPlane);
+
+            //     isPlayerOnPlane_saved = isPlayerOnPlane;
+            // }
                 TDUdpManager.Instance.SendPlayerPlaneState(isPlayerOnPlane);
 
                 Debug.Log("isPlayerOnPlane changed: " + isPlayerOnPlane);
 
                 isPlayerOnPlane_saved = isPlayerOnPlane;
-            }
         }
 
         setTypeUI();
-        if (introInitialized && isInIntro != prevIsInIntro)
-        {
-            if (TDUdpManager.Instance != null)
-            {
-                TDUdpManager.Instance.SendIntroState(isInIntro);
+        // if (introInitialized && isInIntro != prevIsInIntro)
+        // {
+        //     if (TDUdpManager.Instance != null)
+        //     {
+        //         TDUdpManager.Instance.SendIntroState(isInIntro);
 
-            }
+        //     }
 
-            prevIsInIntro = isInIntro;
-        }
+        //     prevIsInIntro = isInIntro;
+        // }
 
     }
 
@@ -90,18 +95,28 @@ public class PlayerStateManager : MonoBehaviour
 
         for (int i = 0; i < typeUI.Length; i++)
         {
-            Color c = typeUI[i].color;
+            // Color c = typeUI[i].color;
+
+            // if (serialReceiver.type == i)
+            // {
+            //     c.a = 1f;
+            // }
+            // else
+            // {
+            //     c.a = 0.1f;
+            // }
+
+            // typeUI[i].color = c;
 
             if (serialReceiver.type == i)
             {
-                c.a = 1f;
+                typeUI[i].gameObject.SetActive(true);
             }
             else
             {
-                c.a = 0.1f;
+                typeUI[i].gameObject.SetActive(false);
             }
 
-            typeUI[i].color = c;
         }
     }
 

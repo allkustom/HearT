@@ -303,10 +303,10 @@ public class IntroManager_Buttons : MonoBehaviour
         }
         if (pageNum == 5)
         {
-            if (PlayerDataManager.Instance.page4Answer == 1)
-            {
-                correctAnswerUI.SetActive(true);
-            }
+            // if (PlayerDataManager.Instance.page4Answer == 1)
+            // {
+            //     correctAnswerUI.SetActive(true);
+            // }
         }
 
         if (pageNum == pages.Length)
@@ -341,175 +341,175 @@ public class IntroManager_Buttons : MonoBehaviour
         nextButton.SetActive(false);
     }
 
-    public void Page4Answer_1()
-    {
-        PlayerDataManager.Instance.page4Answer = 1;
-    }
-    public void Page4Answer_2()
-    {
-        PlayerDataManager.Instance.page4Answer = 2;
-    }
-    public void Page4Answer_3()
-    {
-        PlayerDataManager.Instance.page4Answer = 3;
-    }
-    public void Page4Answer_4()
-    {
-        PlayerDataManager.Instance.page4Answer = 4;
-    }
+    // public void Page4Answer_1()
+    // {
+    //     PlayerDataManager.Instance.page4Answer = 1;
+    // }
+    // public void Page4Answer_2()
+    // {
+    //     PlayerDataManager.Instance.page4Answer = 2;
+    // }
+    // public void Page4Answer_3()
+    // {
+    //     PlayerDataManager.Instance.page4Answer = 3;
+    // }
+    // public void Page4Answer_4()
+    // {
+    //     PlayerDataManager.Instance.page4Answer = 4;
+    // }
 
 
-    // Add TDUDP sending function below clip setting
-    public void sound1Select_1_Apply()
-    {
-        dashBoardConvertedSounds[0].GetComponent<AudioSource>().clip = soundSamples_1[PlayerDataManager.Instance.soundSelect_1].GetComponent<AudioSource>().clip;
-        SendSoundSelectsToTD();
-    }
-    public void sound1Select_2_Apply()
-    {
-        dashBoardConvertedSounds[1].GetComponent<AudioSource>().clip = soundSamples_2[PlayerDataManager.Instance.soundSelect_2].GetComponent<AudioSource>().clip;
-        SendSoundSelectsToTD();
-    }
-    public void sound1Select_3_Apply()
-    {
-        dashBoardConvertedSounds[2].GetComponent<AudioSource>().clip = soundSamples_3[PlayerDataManager.Instance.soundSelect_3].GetComponent<AudioSource>().clip;
-        SendSoundSelectsToTD();
-    }
-    public void sound1Select_4_Apply()
-    {
-        dashBoardConvertedSounds[3].GetComponent<AudioSource>().clip = soundSamples_4[PlayerDataManager.Instance.soundSelect_4].GetComponent<AudioSource>().clip;
-        SendSoundSelectsToTD();
-    }
-    public void SendSoundSelectsToTD()
-    {
-        if (TDUdpManager.Instance == null) return;
+    // // Add TDUDP sending function below clip setting
+    // public void sound1Select_1_Apply()
+    // {
+    //     dashBoardConvertedSounds[0].GetComponent<AudioSource>().clip = soundSamples_1[PlayerDataManager.Instance.soundSelect_1].GetComponent<AudioSource>().clip;
+    //     SendSoundSelectsToTD();
+    // }
+    // public void sound1Select_2_Apply()
+    // {
+    //     dashBoardConvertedSounds[1].GetComponent<AudioSource>().clip = soundSamples_2[PlayerDataManager.Instance.soundSelect_2].GetComponent<AudioSource>().clip;
+    //     SendSoundSelectsToTD();
+    // }
+    // public void sound1Select_3_Apply()
+    // {
+    //     dashBoardConvertedSounds[2].GetComponent<AudioSource>().clip = soundSamples_3[PlayerDataManager.Instance.soundSelect_3].GetComponent<AudioSource>().clip;
+    //     SendSoundSelectsToTD();
+    // }
+    // public void sound1Select_4_Apply()
+    // {
+    //     dashBoardConvertedSounds[3].GetComponent<AudioSource>().clip = soundSamples_4[PlayerDataManager.Instance.soundSelect_4].GetComponent<AudioSource>().clip;
+    //     SendSoundSelectsToTD();
+    // }
+    // public void SendSoundSelectsToTD()
+    // {
+    //     if (TDUdpManager.Instance == null) return;
 
-        TDUdpManager.Instance.SendSoundSelects(
-            PlayerDataManager.Instance.soundSelect_1,
-            PlayerDataManager.Instance.soundSelect_2,
-            PlayerDataManager.Instance.soundSelect_3,
-            PlayerDataManager.Instance.soundSelect_4
-        );
-    }
-
-
-    public void sound1Select_1_1()
-    {
-        PlayerDataManager.Instance.soundSelect_1 = 0;
-    }
-    public void sound1Select_1_2()
-    {
-        PlayerDataManager.Instance.soundSelect_1 = 1;
-    }
-    public void sound1Select_1_3()
-    {
-        PlayerDataManager.Instance.soundSelect_1 = 2;
-    }
-    public void sound1Select_1_4()
-    {
-        PlayerDataManager.Instance.soundSelect_1 = 3;
-    }
+    //     TDUdpManager.Instance.SendSoundSelects(
+    //         PlayerDataManager.Instance.soundSelect_1,
+    //         PlayerDataManager.Instance.soundSelect_2,
+    //         PlayerDataManager.Instance.soundSelect_3,
+    //         PlayerDataManager.Instance.soundSelect_4
+    //     );
+    // }
 
 
-
-
-
-    public void sound1Select_2_1()
-    {
-        PlayerDataManager.Instance.soundSelect_2 = 0;
-    }
-    public void sound1Select_2_2()
-    {
-        PlayerDataManager.Instance.soundSelect_2 = 1;
-    }
-    public void sound1Select_2_3()
-    {
-        PlayerDataManager.Instance.soundSelect_2 = 2;
-    }
-    public void sound1Select_2_4()
-    {
-        PlayerDataManager.Instance.soundSelect_2 = 3;
-    }
+    // public void sound1Select_1_1()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_1 = 0;
+    // }
+    // public void sound1Select_1_2()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_1 = 1;
+    // }
+    // public void sound1Select_1_3()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_1 = 2;
+    // }
+    // public void sound1Select_1_4()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_1 = 3;
+    // }
 
 
 
-    public void sound1Select_3_1()
-    {
-        PlayerDataManager.Instance.soundSelect_3 = 0;
-    }
-    public void sound1Select_3_2()
-    {
-        PlayerDataManager.Instance.soundSelect_3 = 1;
-    }
-    public void sound1Select_3_3()
-    {
-        PlayerDataManager.Instance.soundSelect_3 = 2;
-    }
-    public void sound1Select_3_4()
-    {
-        PlayerDataManager.Instance.soundSelect_3 = 3;
-    }
 
 
-    public void sound1Select_4_1()
-    {
-        PlayerDataManager.Instance.soundSelect_4 = 0;
-    }
-    public void sound1Select_4_2()
-    {
-        PlayerDataManager.Instance.soundSelect_4 = 1;
-    }
-    public void sound1Select_4_3()
-    {
-        PlayerDataManager.Instance.soundSelect_4 = 2;
-    }
-    public void sound1Select_4_4()
-    {
-        PlayerDataManager.Instance.soundSelect_4 = 3;
-    }
-
-    public void playRaw_1()
-    {
-        dashBoardRawSounds[0].SetActive(false);
-        dashBoardRawSounds[0].SetActive(true);
-    }
-    public void playRaw_2()
-    {
-        dashBoardRawSounds[1].SetActive(false);
-        dashBoardRawSounds[1].SetActive(true);
-    }
-    public void playRaw_3()
-    {
-        dashBoardRawSounds[2].SetActive(false);
-        dashBoardRawSounds[2].SetActive(true);
-    }
-    public void playRaw_4()
-    {
-        dashBoardRawSounds[3].SetActive(false);
-        dashBoardRawSounds[3].SetActive(true);
-    }
+    // public void sound1Select_2_1()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_2 = 0;
+    // }
+    // public void sound1Select_2_2()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_2 = 1;
+    // }
+    // public void sound1Select_2_3()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_2 = 2;
+    // }
+    // public void sound1Select_2_4()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_2 = 3;
+    // }
 
 
-    public void playConverted_1()
-    {
-        dashBoardConvertedSounds[0].SetActive(false);
-        dashBoardConvertedSounds[0].SetActive(true);
-    }
-    public void playConverted_2()
-    {
-        dashBoardConvertedSounds[1].SetActive(false);
-        dashBoardConvertedSounds[1].SetActive(true);
-    }
-    public void playConverted_3()
-    {
-        dashBoardConvertedSounds[2].SetActive(false);
-        dashBoardConvertedSounds[2].SetActive(true);
-    }
-    public void playConverted_4()
-    {
-        dashBoardConvertedSounds[3].SetActive(false);
-        dashBoardConvertedSounds[3].SetActive(true);
-    }
+
+    // public void sound1Select_3_1()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_3 = 0;
+    // }
+    // public void sound1Select_3_2()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_3 = 1;
+    // }
+    // public void sound1Select_3_3()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_3 = 2;
+    // }
+    // public void sound1Select_3_4()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_3 = 3;
+    // }
+
+
+    // public void sound1Select_4_1()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_4 = 0;
+    // }
+    // public void sound1Select_4_2()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_4 = 1;
+    // }
+    // public void sound1Select_4_3()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_4 = 2;
+    // }
+    // public void sound1Select_4_4()
+    // {
+    //     PlayerDataManager.Instance.soundSelect_4 = 3;
+    // }
+
+    // public void playRaw_1()
+    // {
+    //     dashBoardRawSounds[0].SetActive(false);
+    //     dashBoardRawSounds[0].SetActive(true);
+    // }
+    // public void playRaw_2()
+    // {
+    //     dashBoardRawSounds[1].SetActive(false);
+    //     dashBoardRawSounds[1].SetActive(true);
+    // }
+    // public void playRaw_3()
+    // {
+    //     dashBoardRawSounds[2].SetActive(false);
+    //     dashBoardRawSounds[2].SetActive(true);
+    // }
+    // public void playRaw_4()
+    // {
+    //     dashBoardRawSounds[3].SetActive(false);
+    //     dashBoardRawSounds[3].SetActive(true);
+    // }
+
+
+    // public void playConverted_1()
+    // {
+    //     dashBoardConvertedSounds[0].SetActive(false);
+    //     dashBoardConvertedSounds[0].SetActive(true);
+    // }
+    // public void playConverted_2()
+    // {
+    //     dashBoardConvertedSounds[1].SetActive(false);
+    //     dashBoardConvertedSounds[1].SetActive(true);
+    // }
+    // public void playConverted_3()
+    // {
+    //     dashBoardConvertedSounds[2].SetActive(false);
+    //     dashBoardConvertedSounds[2].SetActive(true);
+    // }
+    // public void playConverted_4()
+    // {
+    //     dashBoardConvertedSounds[3].SetActive(false);
+    //     dashBoardConvertedSounds[3].SetActive(true);
+    // }
 
 
 
